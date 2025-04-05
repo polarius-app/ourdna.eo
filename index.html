@@ -1,540 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OUR DNA - Premium Event Organizer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Separate filters for video and images */
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OUR DNA - Premium Event Organizer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    
+    /* Filter untuk video dan gambar */
     video {
-        filter: grayscale(100%) brightness(0.2);
+      filter: grayscale(100%) brightness(0.2);
+    }
+    img {
+      filter: grayscale(100%) brightness(0.7);
+    }
+    .video-hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      background: #000;
+    }
+    #heroVideo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease;
+      z-index: 0;
+    }
+    .video-loaded #heroVideo {
+      opacity: 1;
+    }
+    nav {
+      background-color: transparent;
+      transition: all 0.3s ease;
+    }
+    nav.scrolled {
+      background-color: rgba(0,0,0,0.9) !important;
+      backdrop-filter: blur(10px);
+    }
+    section {
+      scroll-margin-top: 80px;
+    }
+    @media (max-width: 768px) {
+      #heroVideo {
+        display: none;
       }
-      img {
-        filter: grayscale(100%) brightness(0.7);
+      .video-hero {
+        background: url('assets/images/mobile-fallback.jpg') center/cover;
       }
-
-        .video-hero {
-            position: relative;
-            height: 100vh;
-            overflow: hidden;
-            background: #000;
-        }
-
-        #heroVideo {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            min-width: 100%;
-            min-height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 1s ease;
-            z-index: 0;
-        }
-
-        .video-loaded #heroVideo {
-            opacity: 1;
-        }
-
-        nav {
-            background-color: transparent;
-            transition: all 0.3s ease;
-        }
-        
-        nav.scrolled {
-            background-color: rgba(0,0,0,0.9) !important;
-            backdrop-filter: blur(10px);
-        }
-
-        section {
-            scroll-margin-top: 80px;
-        }
-
-        @media (max-width: 768px) {
-            #heroVideo {
-                display: none;
-            }
-            .video-hero {
-                background: url('assets/images/mobile-fallback.jpg') center/cover;
-            }
-        }
-    </style>
+    }
+  </style>
 </head>
 <body class="bg-black">
-    <!-- Navigation -->
-    <nav class="fixed w-full text-white z-50">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="#home" class="flex items-center">
-                <span class="text-2xl font-bold text-orange-500">OUR DNA</span>
-            </a>
-            <div class="hidden md:flex space-x-8">
-                <a href="#about" class="hover:text-orange-500 transition-colors">About</a>
-                <a href="#events" class="hover:text-orange-500 transition-colors">Events</a>
-                <a href="#products" class="hover:text-orange-500 transition-colors">Merch</a>
-                <a href="#contact" class="hover:text-orange-500 transition-colors">Contact</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="video-hero">
-        <video 
-            id="heroVideo"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="auto"
-            loading="eager"
-            aria-label="Event highlights video"
-        >
-            <source src="assets/videos/hero.mp4" type="video/mp4">
-        </video>
-        
-        <div class="absolute inset-0 flex items-center justify-center text-center z-10">
-            <div class="text-white px-4">
-                <h1 class="text-4xl md:text-6xl font-bold mb-6">
-                    CREATE UNFORGETTABLE<br>EXPERIENCES
-                </h1>
-                <a href="#events" class="bg-orange-500 text-black px-8 py-3 rounded-full hover:bg-orange-600 transition-colors inline-block">
-                    Explore Events
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-black text-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">About Us</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Crafting memories since 2010</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
-                    <p class="text-gray-300 leading-relaxed">
-                        We specialize in creating extraordinary experiences that resonate with your soul. Our team of 
-                        passionate creatives, technical experts, and event architects work tirelessly to transform 
-                        your vision into reality.
-                    </p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-orange-500 p-6 rounded-xl text-black">
-                            <div class="text-3xl font-bold mb-2">150+</div>
-                            <div class="text-sm">Events Organized</div>
-                        </div>
-                        <div class="bg-orange-500 p-6 rounded-xl text-black">
-                            <div class="text-3xl font-bold mb-2">98%</div>
-                            <div class="text-sm">Client Satisfaction</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative group">
-                    <div class="absolute inset-0 bg-orange-500 mix-blend-multiply opacity-30 rounded-xl transform group-hover:opacity-50 transition"></div>
-                    <img src="assets/images/teams.png" 
-                         alt="Our team" 
-                         class="grey-scale rounded-xl shadow-2xl transform group-hover:scale-105 transition duration-500">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Events Section -->
-<section id="events" class="py-20 bg-black text-white">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold mb-4">Upcoming Events</h2>
-            <p class="text-gray-400 max-w-2xl mx-auto">Curated experiences waiting for you</p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-            <!-- Event 1 -->
-            <div class="bg-orange-500 rounded-2xl overflow-hidden hover:transform hover:-translate-y-2 transition-all duration-300 text-black">
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
-                         alt="Music Festival" 
-                         class="w-full h-48 object-cover">
-                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black p-4">
-                        <div class="text-black font-bold">June 15, 2024</div>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2">Neon Nights Festival</h3>
-                    <p class="mb-4">24-hour electronic music marathon with top international DJs</p>
-                    <div class="flex justify-between items-center">
-                        <div class="font-bold">From $99</div>
-                        <button class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-colors">
-                            Get Tickets
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Event 2 -->
-            <div class="bg-orange-500 rounded-2xl overflow-hidden hover:transform hover:-translate-y-2 transition-all duration-300 text-black">
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
-                         alt="Art Exhibition" 
-                         class="w-full h-48 object-cover">
-                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black p-4">
-                        <div class="text-black font-bold">July 2-30, 2024</div>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2">Modern Art Revolution</h3>
-                    <p class="mb-4">Contemporary art showcase featuring 50+ emerging artists</p>
-                    <div class="flex justify-between items-center">
-                        <div class="font-bold">$25</div>
-                        <button class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-colors">
-                            Get Tickets
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Event 3 -->
-            <div class="bg-orange-500 rounded-2xl overflow-hidden hover:transform hover:-translate-y-2 transition-all duration-300 text-black">
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
-                         alt="Tech Conference" 
-                         class="w-full h-48 object-cover">
-                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black p-4">
-                        <div class="text-black font-bold">August 10-12, 2024</div>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2">Future Tech Summit</h3>
-                    <p class="mb-4">3-day conference with tech innovators and startup exhibitions</p>
-                    <div class="flex justify-between items-center">
-                        <div class="font-bold">From $299</div>
-                        <button class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-colors">
-                            Get Tickets
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Event 4 -->
-            <div class="bg-orange-500 rounded-2xl overflow-hidden hover:transform hover:-translate-y-2 transition-all duration-300 text-black">
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
-                         alt="Food Festival" 
-                         class="w-full h-48 object-cover">
-                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black p-4">
-                        <div class="text-black font-bold">September 5, 2024</div>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2">Global Taste Festival</h3>
-                    <p class="mb-4">Culinary journey through 20+ international cuisines</p>
-                    <div class="flex justify-between items-center">
-                        <div class="font-bold">$45</div>
-                        <button class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-colors">
-                            Get Tickets
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Event 5 -->
-            <div class="bg-orange-500 rounded-2xl overflow-hidden hover:transform hover:-translate-y-2 transition-all duration-300 text-black">
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
-                         alt="Sports Event" 
-                         class="w-full h-48 object-cover">
-                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black p-4">
-                        <div class="text-black font-bold">October 20, 2024</div>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2">Extreme Sports Challenge</h3>
-                    <p class="mb-4">Annual extreme sports competition with international athletes</p>
-                    <div class="flex justify-between items-center">
-                        <div class="font-bold">From $75</div>
-                        <button class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-colors">
-                            Get Tickets
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Event 5 -->
-            <div class="bg-orange-500 rounded-2xl overflow-hidden hover:transform hover:-translate-y-2 transition-all duration-300 text-black">
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
-                         alt="Sports Event" 
-                         class="w-full h-48 object-cover">
-                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black p-4">
-                        <div class="text-black font-bold">October 20, 2024</div>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2">Extreme Sports Challenge</h3>
-                    <p class="mb-4">Annual extreme sports competition with international athletes</p>
-                    <div class="flex justify-between items-center">
-                        <div class="font-bold">From $75</div>
-                        <button class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-colors">
-                            Get Tickets
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+  <!-- Navigation -->
+  <nav class="fixed w-full text-white z-50">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="flex items-center">
+        <span class="text-2xl font-bold text-orange-500">OUR DNA</span>
+      </a>
+      <div class="hidden md:flex space-x-8">
+        <a href="#hero-section" class="hover:text-orange-500 transition-colors">Home</a>
+        <a href="#about-section" class="hover:text-orange-500 transition-colors">About</a>
+        <a href="#events-section" class="hover:text-orange-500 transition-colors">Events</a>
+        <a href="#products-section" class="hover:text-orange-500 transition-colors">Merch</a>
+        <a href="#contact-section" class="hover:text-orange-500 transition-colors">Contact</a>
+      </div>
     </div>
-</section>
+  </nav>
 
-    <!-- Merchandise Section -->
-<section id="products" class="py-20 bg-black text-white">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold mb-4">Premium Merchandise</h2>
-            <p class="text-gray-400 max-w-2xl mx-auto">Wear the experience</p>
-        </div>
+  <!-- Tempat untuk memuat setiap bagian -->
+  <div id="hero-section"></div>
+  <div id="partners-section"></div>
+  <div id="about-section"></div>
+  <div id="events-section"></div>
+  <div id="products-section"></div>
+  <div id="contact-section"></div>
+  <div id="footer-section"></div>
 
-        <div class="grid md:grid-cols-5 gap-6">
-            <!-- Product 1 -->
-            <div class="bg-orange-500 rounded-xl overflow-hidden hover:shadow-2xl transition-shadow text-black">
-                <img src="https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
-                     alt="Premium T-Shirt" 
-                     class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="font-bold mb-2">DNA Logo Tee</h3>
-                    <div class="flex justify-between items-center">
-                        <div class="font-bold">$29.99</div>
-                        <button class="bg-black text-white px-3 py-1 rounded-full hover:bg-gray-800 transition-colors">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
+  <script>
+    // Efek scroll pada navbar
+    const nav = document.querySelector('nav');
+    const heroSection = document.getElementById('hero-section');
+    
+    const updateNavbar = () => {
+      const heroHeight = heroSection.offsetHeight;
+      const scrollPosition = window.scrollY;
+      if (scrollPosition > heroHeight - 100) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    };
 
-            <!-- Product 2 -->
-            <div class="bg-orange-500 rounded-xl overflow-hidden hover:shadow-2xl transition-shadow text-black">
-                <img src="https://images.unsplash.com/photo-1592878904946-b3cd8ae243d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
-                     alt="Baseball Cap" 
-                     class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="font-bold mb-2">Snapback Cap</h3>
-                    <div class="flex justify-between items-center">
-                        <div class="font-bold">$24.99</div>
-                        <button class="bg-black text-white px-3 py-1 rounded-full hover:bg-gray-800 transition-colors">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
+    window.addEventListener('scroll', updateNavbar);
+    updateNavbar();
 
-            <!-- Product 3 -->
-            <div class="bg-orange-500 rounded-xl overflow-hidden hover:shadow-2xl transition-shadow text-black">
-                <img src="https://images.unsplash.com/photo-1620799139652-715e4d5b232d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
-                     alt="Tote Bag" 
-                     class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="font-bold mb-2">Canvas Tote Bag</h3>
-                    <div class="flex justify-between items-center">
-                        <div class="font-bold">$19.99</div>
-                        <button class="bg-black text-white px-3 py-1 rounded-full hover:bg-gray-800 transition-colors">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
+    // Fungsi untuk memuat file HTML eksternal
+    function loadSection(id, file) {
+      fetch(file)
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById(id).innerHTML = html;
+        })
+        .catch(err => console.error('Error loading section:', id, err));
+    }
 
-            <!-- Product 4 -->
-            <div class="bg-orange-500 rounded-xl overflow-hidden hover:shadow-2xl transition-shadow text-black">
-                <img src="https://images.unsplash.com/photo-1620799139652-715e4d5b232d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
-                     alt="Hoodie" 
-                     class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="font-bold mb-2">Zip-Up Hoodie</h3>
-                    <div class="flex justify-between items-center">
-                        <div class="font-bold">$59.99</div>
-                        <button class="bg-black text-white px-3 py-1 rounded-full hover:bg-gray-800 transition-colors">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
+    document.addEventListener("DOMContentLoaded", function() {
+        loadSection("hero-section", "hero.html");
+        loadSection("partners-section", "partners.html"); // Section partner baru
+        loadSection("about-section", "about.html");
+        loadSection("events-section", "events.html");
+        loadSection("products-section", "products.html");
+        loadSection("contact-section", "contact.html");
+        loadSection("footer-section", "footer.html");
 
-            <!-- Product 5 -->
-            <div class="bg-orange-500 rounded-xl overflow-hidden hover:shadow-2xl transition-shadow text-black">
-                <img src="https://images.unsplash.com/photo-1620799139652-715e4d5b232d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
-                     alt="Water Bottle" 
-                     class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="font-bold mb-2">Stainless Bottle</h3>
-                    <div class="flex justify-between items-center">
-                        <div class="font-bold">$22.99</div>
-                        <button class="bg-black text-white px-3 py-1 rounded-full hover:bg-gray-800 transition-colors">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-
-<!-- Contact Section -->
-<section id="contact" class="py-20 bg-black text-white">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold mb-4">Get in Touch</h2>
-            <p class="text-gray-400 max-w-2xl mx-auto">Let's create magic together</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-12">
-            <form class="space-y-6">
-                <div>
-                    <input type="text" placeholder="Your Name" 
-                           class="w-full p-4 bg-orange-500 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none    ">
-                </div>
-                <div>
-                    <input type="email" placeholder="Your Email" 
-                           class="w-full p-4 bg-orange-500 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none">
-                </div>
-                <div>
-                    <textarea rows="5" placeholder="Your Message"
-                              class="w-full p-4 bg-orange-500 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none"></textarea>
-                </div>
-                <button type="submit" 
-                        class="w-full bg-orange-500 text-black px-6 py-3 rounded-lg hover:bg-orange-600 transition-colors">
-                    Send Message
-                </button>
-            </form>
-
-            <div class="space-y-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Connect With Us</h3>
-                    <div class="flex space-x-4">
-                        <a href="#" class="p-3 bg-orange-500 rounded-full hover:bg-orange-600 transition-colors">
-                            <i class="fab fa-instagram text-2xl"></i>
-                        </a>
-                        <a href="#" class="p-3 bg-orange-500 rounded-full hover:bg-orange-600 transition-colors">
-                            <i class="fab fa-tiktok text-2xl"></i>
-                        </a>
-                        <a href="#" class="p-3 bg-orange-500 rounded-full hover:bg-orange-600 transition-colors">
-                            <i class="fab fa-youtube text-2xl"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Our Studio</h3>
-                    <div class="aspect-w-16 aspect-h-9 bg-orange-500 rounded-xl overflow-hidden">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d317715.7119263355!2d-0.3817764547062917!3d51.52873519604595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon%2C%20UK!5e0!3m2!1sen!2s!4v1623930407920!5m2!1sen!2s" 
-                            class="w-full h-64" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy">
-                        </iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="bg-orange-500 text-white py-12">
-    <div class="container mx-auto px-4">
-        <div class="grid md:grid-cols-4 gap-8">
-            <div>
-                <h4 class="text-xl font-bold mb-4">OUR DNA</h4>
-                <p class="text-white">Crafting unforgettable experiences since 2010</p>
-            </div>
-            
-            <div>
-                <h4 class="text-xl font-bold mb-4">Quick Links</h4>
-                <ul class="space-y-2">
-                    <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
-                    <li><a href="#events" class="hover:text-white transition-colors">Events</a></li>
-                    <li><a href="#products" class="hover:text-white transition-colors">Merchandise</a></li>
-                    <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-xl font-bold mb-4">Legal</h4>
-                <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Safety Guidelines</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-xl font-bold mb-4">Newsletter</h4>
-                <div class="flex bg-orange-500 rounded-lg overflow-hidden">
-                    <input type="email" placeholder="Enter your email" 
-                           class="flex-1 px-4 py-2 bg-transparent outline-none">
-                    <button class="bg-orange-500 px-6 hover:bg-orange-600 transition-colors">
-                        Subscribe
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="border-t border-white mt-12 pt-8 text-center text-white">
-            <p>&copy; 2024 OUR DNA. All rights reserved.</p>
-        </div>
-    </div>
-</footer>
-
-
-
-    <script>
-        // Navbar Scroll Effect
-        const nav = document.querySelector('nav');
-        const heroSection = document.getElementById('home');
-
-        const updateNavbar = () => {
-            const heroHeight = heroSection.offsetHeight;
-            const scrollPosition = window.scrollY;
-            
-            if (scrollPosition > heroHeight - 100) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        };
-
-        window.addEventListener('scroll', updateNavbar);
-        updateNavbar();
-
-        // Video Loading
+      // Memastikan video hero mendapatkan event "loadeddata"
+      const checkHeroVideo = setInterval(() => {
         const video = document.getElementById('heroVideo');
-        video.addEventListener('loadeddata', () => {
+        if(video) {
+          video.addEventListener('loadeddata', () => {
             document.querySelector('.video-hero').classList.add('video-loaded');
-        });
-
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if(target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Mobile Detection
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        if(isMobile) {
-            video.pause();
-            video.currentTime = 0;
+          });
+          clearInterval(checkHeroVideo);
         }
-    </script>
+      }, 100);
+
+      // Smooth Scroll untuk link halaman
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if(target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // Deteksi mobile untuk menghentikan pemutaran video
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      if(isMobile) {
+        const video = document.getElementById('heroVideo');
+        if(video) {
+          video.pause();
+          video.currentTime = 0;
+        }
+      }
+    });
+  </script>
 </body>
 </html>
